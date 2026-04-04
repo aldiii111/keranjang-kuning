@@ -22,8 +22,8 @@ main {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     padding-top: 96px;
-    padding-right: 17rem;
-    padding-left: 17rem;
+    padding-right: 15%;
+    padding-left: 15%;
     z-index: 0;
 }
 
@@ -40,10 +40,16 @@ p,h3{
     padding-left: 10px;
 }
 
-.hihik, .but{
+.hihik{
     height: 40px;
     width: 40px;
     position: relative;
+    margin: 0px;
+}
+.but{
+    height: 40px;
+    width: 40px;
+    margin: 0px;
 }
 
 button{
@@ -87,10 +93,13 @@ img {
     display: none;
     position: absolute;
     right: -8rem;
-    height: 350px;
+    height: 400px;
     width: 300px;
     background-color: white;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    margin-bottom: 2rem;
+    box-shadow: 0 0px 5px 0px rgb(0, 0, 0, 0.10);
+}
+.popup:hover {
+    display: flex;
 }
