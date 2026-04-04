@@ -9,7 +9,8 @@ html{
 nav{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 10rem;
     position: fixed;
     background-color: white;
     width: 100%;
@@ -25,6 +26,7 @@ main {
     padding-right: 15%;
     padding-left: 15%;
     z-index: 0;
+    justify-content: center;
 }
 
 section {
@@ -93,12 +95,11 @@ img {
     display: none;
     position: absolute;
     right: -8rem;
-    height: 350px;
+    height: 370px;
     width: 300px;
     background-color: white;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    box-shadow: 0 0px 5px 0px rgb(0, 0, 0, 0.10);
     padding-top: 3rem;
 }
 .popup:hover {
@@ -106,13 +107,30 @@ img {
 }
 
 @media (max-width: 1200px) {
-    main {
+    main{
         grid-template-columns: repeat(3, 1fr);
     }
 }
-@media (max-width: 945px) {
-    main {
-        padding-right: 12%;
-        padding-left: 12%;
+@media (max-width: 815px) {
+    main{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    nav{
+        gap: 50px;
+    }
+}
+@media (max-width: 650px) {
+    nav{
+        gap: 3px;
+    }
+}
+@media (max-width: 550px) {
+    main{
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 31%;
+        padding-left: 31%;
+    }
+    .popup{
+        right: -2.5rem;
     }
 }
