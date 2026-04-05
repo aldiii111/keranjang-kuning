@@ -85,3 +85,7 @@ const produk = [
 ]
 
 const keranjang = []
+
+function click(params) {
+
+}
