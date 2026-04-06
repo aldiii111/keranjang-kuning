@@ -111,13 +111,13 @@ function addCard() {
 }
 
 const datas = produk.map((values) => {
-  (addCard(), (p.innerHTML = values.nama));
+  addCard(), 
+  p.innerHTML = values.nama;
   h3.innerHTML = values.harga;
   pp.innerHTML = values.daerah;
 });
 
-tombol.onclick = function() {
-    barang(valuess)
-
-    
-}
+tombol.onclick = function () {
+  barang(valuess);
+   
+};
