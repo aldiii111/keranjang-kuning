@@ -86,6 +86,25 @@ const produk = [
 
 const keranjang = []
 
-function click(params) {
+function click() {
+    const tombol1 = document.getElementById('tombol1')
+    const tombol2 = document.getElementById('tombol2')
+    const tombol3 = document.getElementById('tombol3')
+    const tombol4 = document.getElementById('tombol4')
+    const tombol5 = document.getElementById('tombol5')
+    const tombol6 = document.getElementById('tombol6')
+    const tombol7 = document.getElementById('tombol7')
+    const tombol8 = document.getElementById('tombol8')
+    const tombol9 = document.getElementById('tombol9')
+    const tombol10 = document.getElementById('tombol10')
+    const tombol11 = document.getElementById('tombol11')
+    const tombol12 = document.getElementById('tombol12')
+    const tombol13 = document.getElementById('tombol13')
+    const tombol14 = document.getElementById('tombol14')
 
+    const tombol = tombol1
+
+    if(tombol.checked) {
+        console.log('wkwk')
+    }
 }
