@@ -87,22 +87,23 @@ const produk = [
 const keranjang = [];
 
 const preview = document.getElementById("preview");
-let p;
-let h3;
-let pp;
-let tombol;
-function addCard() {
+
+function addCard(data) {
   const div = document.createElement("div");
   div.className = "div1";
 
   const img = document.createElement("img");
   img.src = "assets/images/hihi.avif";
 
-  p = document.createElement("p");
-  h3 = document.createElement("h3");
-  pp = document.createElement("p");
+  const p = document.createElement("p");
+  const h3 = document.createElement("h3");
+  const pp = document.createElement("p");
 
-  tombol = document.createElement("button");
+  p.innerHTML = data.nama;
+  h3.innerHTML = data.harga;
+  pp.innerHTML = data.daerah;
+
+  const tombol = document.createElement("button");
   tombol.type = "button";
   tombol.textContent = "add keranjang";
 
@@ -110,14 +111,8 @@ function addCard() {
   preview.append(div);
 }
 
-const datas = produk.map((values) => {
-  addCard(), 
-  p.innerHTML = values.nama;
-  h3.innerHTML = values.harga;
-  pp.innerHTML = values.daerah;
+const datas = produk.forEach((values) => {
+  addCard(values)
 });
 
-tombol.onclick = function () {
-  barang(valuess);
-   
-};
+
