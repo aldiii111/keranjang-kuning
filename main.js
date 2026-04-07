@@ -103,15 +103,23 @@ function addCard(data) {
   h3.innerHTML = data.harga;
   pp.innerHTML = data.daerah;
 
-  const tombol = document.createElement("button");
-  tombol.type = "button";
-  tombol.textContent = "add keranjang";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.textContent = "add keranjang";
 
-  div.append(img, p, h3, pp, tombol);
+  btn.addEventListener("click", 
+    masukkekeranjang(huuu)
+  )
+
+  div.append(img, p, h3, pp, btn);
   preview.append(div);
 }
 
-const datas = produk.forEach((values) => {
+function toKeranjang(hfff) {
+  
+}
+
+produk.forEach((values) => {
   addCard(values)
 });
 
