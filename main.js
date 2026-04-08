@@ -107,9 +107,9 @@ function addCard(data) {
   btn.type = "button";
   btn.textContent = "add keranjang";
 
-  btn.addEventListener("click", 
+  btn.addEventListener("click", function() {
     masukkekeranjang(huuu)
-  )
+  })
 
   div.append(img, p, h3, pp, btn);
   preview.append(div);
