@@ -61,7 +61,7 @@ button{
     height: 30px;
     margin-top: 1rem;
 }
-button:hover {
+button:active {
     background-color: rgb(253, 228, 86);
 }
 
@@ -101,6 +101,8 @@ img {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     padding-top: 3rem;
+    gap: 5px;
+    overflow: scroll;
 }
 .popup:hover {
     display: flex;

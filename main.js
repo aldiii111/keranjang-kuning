@@ -107,20 +107,38 @@ function addCard(data) {
   btn.type = "button";
   btn.textContent = "add keranjang";
 
-  btn.addEventListener("click", function() {
-    masukkekeranjang(huuu)
+  btn.addEventListener("click", function () {
+    masukKeranjang(data)
   })
 
   div.append(img, p, h3, pp, btn);
   preview.append(div);
 }
 
-function toKeranjang(hfff) {
-  
+function showCard(datas) {
+  const divv = document.createElement("div");
+  divv.style.boxShadow = "0 2px 5px 2px rgb(0, 0, 0, 0.2)";
+  divv.style.display = "flex";
+  divv.style.padding = "8px";
+  divv.style.flexDirection = "column";
+
+  const p = document.createElement("p");
+  p.innerHTML = datas.nama + "<br>" + datas.harga + "<br>" + datas.daerah
+
+  divv.append(p)
+  popup.append(divv)
 }
+
+function masukKeranjang(barangnya) {
+  keranjang.push(barangnya)
+  keranjang.forEach((values) => {
+    showCard(values)
+  })
+}
+
 
 produk.forEach((values) => {
   addCard(values)
 });
 
-
+console.log(keranjang)
