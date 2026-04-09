@@ -100,9 +100,10 @@ img {
     background-color: white;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    padding-top: 3rem;
-    gap: 5px;
-    overflow: scroll;
+    padding: 0.5rem;
+    gap: 15px;
+    overflow-y: scroll;
+    flex-direction: column;
 }
 .popup:hover {
     display: flex;

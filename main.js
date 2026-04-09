@@ -108,8 +108,8 @@ function addCard(data) {
   btn.textContent = "add keranjang";
 
   btn.addEventListener("click", function () {
-    masukKeranjang(data)
-  })
+    masukKeranjang(data);
+  });
 
   div.append(img, p, h3, pp, btn);
   preview.append(div);
@@ -117,28 +117,47 @@ function addCard(data) {
 
 function showCard(datas) {
   const divv = document.createElement("div");
-  divv.style.boxShadow = "0 2px 5px 2px rgb(0, 0, 0, 0.2)";
+  divv.className = "b";
+  divv.style.boxShadow = "0 2px 8px 2px rgb(0, 0, 0, 0.09)";
   divv.style.display = "flex";
   divv.style.padding = "8px";
   divv.style.flexDirection = "column";
 
-  const p = document.createElement("p");
-  p.innerHTML = datas.nama + "<br>" + datas.harga + "<br>" + datas.daerah
+  const ppp = document.createElement("p");
+  ppp.innerHTML = datas.nama + "<br>" + datas.harga + "<br>" + datas.daerah;
 
-  divv.append(p)
-  popup.append(divv)
+  (ppp,
+    (divv.onmouseover = function () {
+      hovering(datas);
+    }));
+
+  (ppp,
+    (divv.onmouseout = function () {
+      outing(datas);
+    }));
+
+  divv.append(ppp);
+  popup.append(divv);
 }
-
-function masukKeranjang(barangnya) {
-  keranjang.push(barangnya)
-  keranjang.forEach((values) => {
-    showCard(values)
-  })
-}
-
 
 produk.forEach((values) => {
-  addCard(values)
+  addCard(values);
 });
 
-console.log(keranjang)
+function masukKeranjang(barangnya) {
+  keranjang.push(barangnya);
+  keranjang.forEach((values) => {
+    showCard(values);
+  });
+}
+
+function hovering(greatboy) {
+  greatboy = overlay.style.display = "flex";
+  greatboy = popup.style.display = "flex";
+}
+function outing(goodboy) {
+  goodboy = overlay.style.display = "flex";
+  goodboy = popup.style.display = "flex";
+}
+
+console.log(keranjang);
