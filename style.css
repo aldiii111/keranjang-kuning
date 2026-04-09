@@ -104,9 +104,19 @@ img {
     gap: 15px;
     overflow-y: scroll;
     flex-direction: column;
+    z-index: 2;
 }
-.popup:hover {
-    display: flex;
+
+.popup2 {
+    display: none;
+    position: absolute;
+    right: -130.4px;/*128*/
+    height: 370px;
+    width: 321.3px;
+    padding-bottom: 18.5px;
+    border-bottom-left-radius: 15px;
+    background-color: aqua;
+    z-index: 1;
 }
 
 @media (max-width: 1200px) {

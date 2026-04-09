@@ -1,14 +1,16 @@
 const overlay = document.querySelector(".overlay");
 const popup = document.querySelector(".popup");
+const popup2 = document.querySelector(".popup2");
 
 function hover() {
   overlay.style.display = "flex";
   popup.style.display = "flex";
+  popup2.style.display = "flex";
 }
-
 function out() {
   overlay.style.display = "none";
   popup.style.display = "none";
+  popup2.style.display = "none";
 }
 
 const produk = [
@@ -126,15 +128,9 @@ function showCard(datas) {
   const ppp = document.createElement("p");
   ppp.innerHTML = datas.nama + "<br>" + datas.harga + "<br>" + datas.daerah;
 
-  (ppp,
-    (divv.onmouseover = function () {
-      hovering(datas);
-    }));
+  ppp,divv.onmouseover = hover();
 
-  (ppp,
-    (divv.onmouseout = function () {
-      outing(datas);
-    }));
+  ppp,divv.onmouseout = out();
 
   divv.append(ppp);
   popup.append(divv);
@@ -149,15 +145,6 @@ function masukKeranjang(barangnya) {
   keranjang.forEach((values) => {
     showCard(values);
   });
-}
-
-function hovering(greatboy) {
-  greatboy = overlay.style.display = "flex";
-  greatboy = popup.style.display = "flex";
-}
-function outing(goodboy) {
-  goodboy = overlay.style.display = "flex";
-  goodboy = popup.style.display = "flex";
 }
 
 console.log(keranjang);
