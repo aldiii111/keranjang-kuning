@@ -1,25 +1,248 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaduraShop | Bento Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg': '#f5f2ed',
+                        'text': '#3c3c3c',
+                        'accent': '#d97757',
+                        'sage': '#94a684',
+                        'cream': '#ffffff',
+                        'sidebar-bg': '#2b2b2b',
+                        'sidebar-hover': '#3a3a3a',
+                        'border-custom': 'rgba(60, 60, 60, 0.08)',
+                    },
+                    fontFamily: {
+                        fraunces: ['Fraunces', 'serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 30px rgba(148, 166, 132, 0.1)',
+                        'card-hover': '0 20px 40px rgba(148, 166, 132, 0.15)',
+                        'glass': '0 8px 32px rgba(148, 166, 132, 0.12)',
+                    },
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
-    <title>array-2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body>
-    <nav>
-        <h1>maduraShop</h1>
-        <article class="hihik">
-            <img src="assets/images/cart.png" class="but" onmouseover="hover()">
-            <div class="popup" onmouseleave="out()"></div>
-        </article>
-    </nav>
-    <div class="overlay"></div>
-    <main id="preview">
+<body class="bg-bg text-text font-inter leading-relaxed overflow-x-hidden">
 
-    </main>
+    <!-- Decorative Blobs -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[200px] -left-[100px] w-[600px] h-[600px] rounded-full bg-sage/20 blur-[120px]"></div>
+        <div class="absolute top-[40%] -right-[150px] w-[500px] h-[500px] rounded-full bg-accent/15 blur-[100px]"></div>
+        <div class="absolute -bottom-[100px] left-[30%] w-[450px] h-[450px] rounded-full bg-sage/10 blur-[130px]"></div>
+    </div>
+
+    <!-- SIDEBAR (Desktop) -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-[72px] bg-sage/80 flex flex-col items-center py-6 z-[1001] transition-all duration-300 max-md:hidden">
+        <div class="font-fraunces text-white text-[1.1rem] font-extrabold mb-8">M</div>
+        <nav class="flex flex-col gap-2 flex-1">
+            <button data-nav="shop" class="sidebar-btn active w-12 h-12 rounded-2xl flex items-center justify-center text-white/60 hover:bg-sidebar-hover hover:text-white transition-all duration-300 relative group" title="Shop">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                <span class="absolute left-[60px] bg-sidebar-bg text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">Shop</span>
+            </button>
+            <button data-nav="dashboard" class="sidebar-btn w-12 h-12 rounded-2xl flex items-center justify-center text-white/60 hover:bg-sidebar-hover hover:text-white transition-all duration-300 relative group" title="Dashboard">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span class="absolute left-[60px] bg-sidebar-bg text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">Dashboard</span>
+            </button>
+            <button data-nav="cart" class="sidebar-btn w-12 h-12 rounded-2xl flex items-center justify-center text-white/60 hover:bg-sidebar-hover hover:text-white transition-all duration-300 relative group" title="Cart">
+                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                <span class="absolute left-[60px] bg-sidebar-bg text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">Cart</span>
+            </button>
+            <button data-nav="settings" class="sidebar-btn w-12 h-12 rounded-2xl flex items-center justify-center text-white/60 hover:bg-sidebar-hover hover:text-white transition-all duration-300 relative group" title="Settings">
+                <i data-lucide="settings" class="w-5 h-5"></i>
+                <span class="absolute left-[60px] bg-sidebar-bg text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">Settings</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- MOBILE TOP BAR -->
+    <header class="hidden max-md:flex items-center gap-4 px-5 py-4 sticky top-0 bg-sage/80 backdrop-blur-xl z-[1000] border-b border-border-custom">
+        <button id="mobile-burger" class="w-10 h-10 rounded-xl flex items-center justify-center bg-sidebar-bg text-white">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        <div class="font-fraunces text-white text-[1.3rem] font-extrabold">MADURA</div>
+    </header>
+
+    <!-- MOBILE SIDEBAR OVERLAY -->
+    <div id="mobile-overlay" class="hidden fixed inset-0 bg-black/40 z-[1002] backdrop-blur-sm"></div>
+    <aside id="mobile-sidebar" class="fixed left-0 top-0 h-full w-[240px] bg-sage/80 z-[1003] -translate-x-full transition-transform duration-300 flex flex-col p-6">
+        <div class="flex items-center justify-between mb-8">
+            <div class="font-fraunces text-white text-[1.3rem] font-extrabold">MADURA</div>
+            <button id="mobile-close" class="w-8 h-8 rounded-lg flex items-center justify-center text-white/60 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <button data-nav="shop" class="mobile-nav-btn active flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-sidebar-hover hover:text-white transition-all text-sm font-medium text-left">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i> Shop
+            </button>
+            <button data-nav="dashboard" class="mobile-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-sidebar-hover hover:text-white transition-all text-sm font-medium text-left">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
+            </button>
+            <button data-nav="cart" class="mobile-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-sidebar-hover hover:text-white transition-all text-sm font-medium text-left">
+                <i data-lucide="shopping-cart" class="w-5 h-5"></i> Cart
+            </button>
+            <button data-nav="settings" class="mobile-nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-sidebar-hover hover:text-white transition-all text-sm font-medium text-left">
+                <i data-lucide="settings" class="w-5 h-5"></i> Settings
+            </button>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="md:ml-[72px] min-h-screen">
+
+        <!-- PAGE: SHOP (HOME) -->
+        <section data-page="shop" class="page-section pt-10 px-[4%] pb-20 max-w-[1400px] mx-auto">
+            <div class="mb-10" data-aos="fade-up">
+                <div class="text-[0.7rem] font-bold tracking-[0.1em] text-sage mb-2 uppercase">Discover Products</div>
+                <h1 class="font-fraunces font-semibold text-[2.8rem] leading-tight">Welcome to <em class="text-accent not-italic">maduraShop</em></h1>
+                <p class="opacity-60 max-w-[500px]">Premium goods from across the archipelago, curated for your lifestyle.</p>
+            </div>
+            
+            <!-- Bento Grid for Products -->
+            <div id="preview" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-auto">
+                <!-- Products rendered by JS -->
+            </div>
+        </section>
+
+        <!-- PAGE: DASHBOARD -->
+        <section data-page="dashboard" class="page-section hidden pt-10 px-[4%] pb-20 max-w-[1400px] mx-auto">
+            <div class="mb-10">
+                <div class="text-[0.7rem] font-bold tracking-[0.1em] text-sage mb-2 uppercase">Analytics</div>
+                <h2 class="font-fraunces font-semibold text-[2.5rem]">Store Overview</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <!-- Stat Cards -->
+                <div class="card bg-white/60 backdrop-blur-xl border border-white/30 rounded-[40px] p-8 shadow-glass" data-aos="fade-up">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-accent/10 text-accent rounded-2xl flex items-center justify-center"><i data-lucide="package"></i></div>
+                        <div class="text-[0.8rem] font-bold tracking-widest opacity-50 uppercase">Total Products</div>
+                    </div>
+                    <div id="total-products" class="font-fraunces text-4xl font-semibold text-text">0</div>
+                </div>
+                <div class="card bg-white/60 backdrop-blur-xl border border-white/30 rounded-[40px] p-8 shadow-glass" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-sage/10 text-sage rounded-2xl flex items-center justify-center"><i data-lucide="shopping-cart"></i></div>
+                        <div class="text-[0.8rem] font-bold tracking-widest opacity-50 uppercase">Items in Cart</div>
+                    </div>
+                    <div id="cart-count" class="font-fraunces text-4xl font-semibold text-text">0</div>
+                </div>
+                <div class="card bg-accent/80 backdrop-blur-xl border border-accent/30 rounded-[40px] p-8 shadow-glass text-white" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center"><i data-lucide="trending-up"></i></div>
+                        <div class="text-[0.8rem] font-bold tracking-widest opacity-80 uppercase">Store Health</div>
+                    </div>
+                    <div class="font-fraunces text-4xl font-semibold">Excellent</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Recent Activity or other bento items -->
+                <div class="card bg-cream border border-border-custom rounded-[40px] p-10 shadow-card flex flex-col justify-center" data-aos="fade-up">
+                    <h3 class="font-fraunces font-semibold text-[1.8rem] mb-4">Store Pulse</h3>
+                    <p class="opacity-60 leading-relaxed mb-6">Your store is currently seeing high engagement in the "Gadgets" category. Consider highlighting more local electronics.</p>
+                    <div class="flex gap-2">
+                        <span class="px-4 py-2 bg-sage/10 text-sage rounded-full text-xs font-bold uppercase">Trending</span>
+                        <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase">Growth</span>
+                    </div>
+                </div>
+                <div class="card bg-sage/80 backdrop-blur-xl border border-sage/30 rounded-[40px] p-10 shadow-glass text-white" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="font-fraunces font-semibold text-[1.8rem] mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="switchPage('settings')" class="p-4 bg-white/10 hover:bg-white/20 rounded-2xl border border-white/20 transition-all text-left">
+                            <i data-lucide="plus-circle" class="mb-2"></i>
+                            <div class="text-sm font-medium">Add Product</div>
+                        </button>
+                        <button onclick="switchPage('shop')" class="p-4 bg-white/10 hover:bg-white/20 rounded-2xl border border-white/20 transition-all text-left">
+                            <i data-lucide="eye" class="mb-2"></i>
+                            <div class="text-sm font-medium">View Shop</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: CART -->
+        <section data-page="cart" class="page-section hidden pt-10 px-[4%] pb-20 max-w-[1200px] mx-auto">
+            <div class="mb-10">
+                <div class="text-[0.7rem] font-bold tracking-[0.1em] text-sage mb-2 uppercase">Your Selection</div>
+                <h2 class="font-fraunces font-semibold text-[2.5rem]">Shopping Cart</h2>
+            </div>
+            <div id="cart-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cart items rendered by JS -->
+            </div>
+            <div id="empty-cart-msg" class="text-center py-20 hidden">
+                <i data-lucide="shopping-bag" class="w-16 h-16 mx-auto opacity-20 mb-4"></i>
+                <p class="opacity-50">Your cart is empty. Start shopping!</p>
+                <button onclick="switchPage('shop')" class="mt-6 bg-accent text-white px-8 py-3 rounded-full font-medium hover:bg-accent/90 transition-all">Go to Shop</button>
+            </div>
+        </section>
+
+        <!-- PAGE: SETTINGS -->
+        <section data-page="settings" class="page-section hidden pt-10 px-[4%] pb-20 max-w-[900px] mx-auto">
+            <div class="text-[0.7rem] font-bold tracking-[0.1em] text-sage mb-2 uppercase">Admin</div>
+            <h2 class="font-fraunces font-semibold text-[2.2rem] mb-8">Inventory Management</h2>
+
+            <div class="space-y-8">
+                <!-- Add Product -->
+                <div class="bg-white/60 backdrop-blur-xl border border-white/30 rounded-[30px] p-8 shadow-glass" data-aos="fade-up">
+                    <h3 class="font-fraunces font-semibold text-[1.5rem] mb-5 flex items-center gap-2"><i data-lucide="package-plus" class="w-5 h-5 text-accent"></i> Add New Product</h3>
+                    <form id="product-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" id="prod-name" placeholder="Product Name" class="w-full bg-white/80 border border-border-custom px-5 py-3 rounded-2xl outline-none focus:border-accent transition-all text-[0.95rem]" required>
+                            <input type="text" id="prod-price" placeholder="Price (e.g. Rp50.000)" class="w-full bg-white/80 border border-border-custom px-5 py-3 rounded-2xl outline-none focus:border-accent transition-all text-[0.95rem]" required>
+                        </div>
+                        <input type="text" id="prod-region" placeholder="Region (e.g. Jakarta)" class="w-full bg-white/80 border border-border-custom px-5 py-3 rounded-2xl outline-none focus:border-accent transition-all text-[0.95rem]" required>
+                        <button type="submit" class="bg-accent text-white px-6 py-3 rounded-full text-[0.85rem] font-medium transition-all duration-300 hover:bg-accent/90 w-full md:w-auto">Add Product</button>
+                    </form>
+                </div>
+
+                <!-- Product List for deletion -->
+                <div class="bg-white/60 backdrop-blur-xl border border-white/30 rounded-[30px] p-8 shadow-glass" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="font-fraunces font-semibold text-[1.5rem] mb-5 flex items-center gap-2"><i data-lucide="list" class="w-5 h-5 text-accent"></i> Current Inventory</h3>
+                    <div id="inventory-list" class="space-y-3">
+                        <!-- Inventory list items rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-12 px-[4%] text-center opacity-40 text-[0.8rem]">
+            <p>maduraShop © 2024. Curated Excellence.</p>
+        </footer>
+    </div>
+
     <script src="main.js"></script>
+    <script>
+        // Initialize basic UI after JS loads
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            AOS.init({
+                offset: 80,
+                duration: 800,
+                once: true,
+                easing: 'ease-out-cubic'
+            });
+        });
+    </script>
 </body>
+
 </html>
